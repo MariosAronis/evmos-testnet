@@ -26,6 +26,10 @@ resource "aws_instance" "evmos-validator" {
   lifecycle {
     ignore_changes = [ami, root_block_device]
   }
+
+  provisioner "remote-exec" {
+  inline = ["sudo hostnamectl set-hostname evmos-validator-${count.index}"]
+}
 }
 
 # Create SSD volume for evmos-validator
