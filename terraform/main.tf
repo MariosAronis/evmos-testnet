@@ -4,9 +4,9 @@ provider "aws" {
 
 module "vpc-main" {
   source              = "./modules/vpc"
-  environment_name    = vars.environment_name
-  az-1                = vars.az-1
-  az-2                = vars.az-2
-  cidr_prefix_testnet = vars.cidr_prefix_testnet
-  cidr_prefix_vpn     = vars.cidr_prefix_vpn
+  environment_name    = var.environment_name
+  az-1                = var.az-1
+  az-2                = var.az-2
+  cidr_prefix_testnet = var.cidr_prefix_testnet
+  cidr_prefix_vpn     = var.cidr_prefix_vpn
 }
