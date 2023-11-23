@@ -13,7 +13,7 @@ resource "aws_vpc" "evmos-testnet" {
 resource "aws_subnet" "evmos-testnet-sn-public" {
   vpc_id                  = aws_vpc.evmos-testnet.id
   cidr_block              = "${var.cidr_prefix_testnet}.0.0/24"
-  availability_zone       = local.availability.az-1
+  availability_zone       = var.az-1
   map_public_ip_on_launch = true
 
   tags = {
@@ -25,7 +25,7 @@ resource "aws_subnet" "evmos-testnet-sn-public" {
 resource "aws_subnet" "evmos-testnet-sn-priv" {
   vpc_id                  = aws_vpc.evmos-testnet.id
   cidr_block              = "${var.cidr_prefix_testnet}.1.0/24"
-  availability_zone       = local.availability.az-1
+  availability_zone       = var.az-1
   map_public_ip_on_launch = false
 
   tags = {
