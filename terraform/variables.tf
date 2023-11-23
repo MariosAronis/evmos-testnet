@@ -41,3 +41,13 @@ variable "az-2" {
   description = "availability zone 2 in the selected region"
   type        = string
 }
+
+variable "ec2-count" {
+  description = "number of validator nodes to deploy"
+  type        = number
+}
+
+variable "storage" {
+  description = "SSD size in GB"
+  type        = number
+}

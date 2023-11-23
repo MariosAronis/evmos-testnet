@@ -2,6 +2,22 @@ provider "aws" {
   region = var.region
 }
 
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
 module "vpc-main" {
   source              = "./modules/vpc"
   environment_name    = var.environment_name
@@ -9,4 +25,16 @@ module "vpc-main" {
   az-2                = var.az-2
   cidr_prefix_testnet = var.cidr_prefix_testnet
   cidr_prefix_vpn     = var.cidr_prefix_vpn
+}
+
+module "ec2s-main" {
+  source        = "./modules/instances"
+  ami           = data.aws_ami.ubuntu.id
+  ec2-count     = var.ec2-count
+  instance_type = var.instance_type
+  subnet-priv   = module.vpc-main.subnet-priv.id
+  subnet-pub    = module.vpc-main.subnet-pub.id
+  secgroup-priv = module.vpc-main.sg-priv.id
+  secgroup-pub  = module.vpc-main.sg-pub.id
+  storage       = var.storage
 }

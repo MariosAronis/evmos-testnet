@@ -1,0 +1,105 @@
+# Rename default security group for evmos-testnet-default
+resource "aws_default_security_group" "evmos-testnet-default" {
+  vpc_id = aws_vpc.evmos-testnet.id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "evmos-testnet-default"
+  }
+}
+
+# Create security group for evmos-testnet public subnet
+resource "aws_security_group" "evmos-testnet-sg1-public" {
+  name        = "evmos-testnet-sg1-public"
+  description = "Security group for publicly exposed services/ports"
+  vpc_id      = aws_vpc.evmos-testnet.id
+
+ingress {
+    description = "Allow all from vpn subnets"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["${var.cidr_prefix_vpn}.0.0/16"]
+  }
+
+  ingress {
+    description = "Allow geth discovery port"
+    from_port   = 30303
+    to_port     = 30303
+    protocol    = "tcp"
+    cidr_blocks = ["${var.cidr_prefix_testnet}.0.0/16"]
+  }
+
+  ingress {
+    description = "Allow geth discovery port"
+    from_port   = 30303
+    to_port     = 30303
+    protocol    = "udp"
+    cidr_blocks = ["${var.cidr_prefix_testnet}.0.0/16"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+# Create security group for evmos-testnet private subnet
+resource "aws_security_group" "evmos-testnet-sg-priv" {
+  name        = "evmos-testnet-sg-priv"
+  description = "Security Group for internal vpc communications"
+  vpc_id      = aws_vpc.evmos-testnet.id
+
+  ingress {
+    description = "Allow all intra vpc for private subnets"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["${var.cidr_prefix_testnet}.1.0/24", "${var.cidr_prefix_testnet}.2.0/24", "${var.cidr_prefix_testnet}.3.0/24"]
+  }
+
+  ingress {
+    description = "Allow all from vpn subnets"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["${var.cidr_prefix_vpn}.0.0/16"]
+  }
+
+  ingress {
+    description = "Allow geth discovery port"
+    from_port   = 30303
+    to_port     = 30303
+    protocol    = "tcp"
+    cidr_blocks = ["${var.cidr_prefix_testnet}.0.0/16"]
+  }
+
+   ingress {
+    description = "Allow geth discovery port"
+    from_port   = 30303
+    to_port     = 30303
+    protocol    = "udp"
+    cidr_blocks = ["${var.cidr_prefix_testnet}.0.0/16"]
+  }
+
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "evmos-testnet-private"
+  }
+}
+
