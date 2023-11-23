@@ -28,10 +28,6 @@ resource "aws_instance" "evmos-validator" {
   }
 }
 
-output "Validators-Private-IPs" {
-  value = ["${aws_instance.evmos-validator.*.private_ip}"]
-}
-
 # Create SSD volume for evmos-validator
 resource "aws_ebs_volume" "evmos-validator-chaindata" {
  count = var.ec2-count
