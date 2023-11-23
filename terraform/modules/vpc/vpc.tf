@@ -102,5 +102,5 @@ resource "aws_route_table" "evmos-testnet-rtb-private" {
 # Associate route table to private subnet
 resource "aws_route_table_association" "evmos-testnet-associate-r-s-private" {
   subnet_id      = aws_subnet.evmos-testnet-sn-priv.id
-  route_table_id = aws_default_route_table.evmos-testnet-rtb-private.id
+  route_table_id = aws_route_table.evmos-testnet-rtb-private.id
 }
