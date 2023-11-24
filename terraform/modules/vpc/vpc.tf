@@ -116,7 +116,7 @@ resource "aws_vpc" "evmos-testnet-vpn" {
   enable_dns_hostnames = "true"
 
   tags = {
-    Name = var.environment_name
+    Name = "${var.environment_name}-vpn"
   }
 }
 
