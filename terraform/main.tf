@@ -28,13 +28,18 @@ module "vpc-main" {
 }
 
 module "ec2s-main" {
-  source        = "./modules/instances"
-  ami           = data.aws_ami.ubuntu.id
-  ec2-count     = var.ec2-count
-  instance_type = var.instance_type
-  subnet-priv   = module.vpc-main.subnet-priv.id
-  subnet-pub    = module.vpc-main.subnet-pub.id
-  secgroup-priv = module.vpc-main.sg-priv.id
-  secgroup-pub  = module.vpc-main.sg-pub.id
-  storage       = var.storage
+  depends_on        = [module.vpc-main]
+  source            = "./modules/instances"
+  ami               = data.aws_ami.ubuntu.id
+  ec2-count         = var.ec2-count
+  instance_type     = var.instance_type
+  subnet-priv       = module.vpc-main.subnet-priv.id
+  subnet-pub        = module.vpc-main.subnet-pub.id
+  secgroup-priv     = module.vpc-main.sg-priv.id
+  secgroup-pub      = module.vpc-main.sg-pub.id
+  storage           = var.storage
+  vpn_instance_type = var.vpn_instance_type
+  subnet-vpn        = module.vpc-main.subnet-vpn
+  secgroup-vpn      = module.vpc-main.secgroup-vpn.id
+  private_key       = var.private_key
 }

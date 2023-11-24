@@ -24,6 +24,11 @@ variable "instance_type" {
   type        = string
 }
 
+variable "vpn_instance_type" {
+  description = "Type of EC2 instance hosting the vpn service"
+  type        = string
+}
+
 variable "environment_name" {
   type = string
 }

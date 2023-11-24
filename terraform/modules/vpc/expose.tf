@@ -13,3 +13,11 @@ output "subnet-pub" {
 output "subnet-priv" {
   value = aws_subnet.evmos-testnet-sn-priv
 }
+
+output "subnet-vpn" {
+  value = aws_subnet.evmos-testnet-vpn-sn-public
+}
+
+output "secgroup-vpn" {
+  value = aws_security_group.evmos-vpn-sg
+}

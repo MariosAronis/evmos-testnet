@@ -9,3 +9,4 @@ az-1                = "us-west-2a"
 az-2                = "us-west-2b"
 ec2-count           = 3
 storage             = 500
+vpn_instance_type   = "t3.micro"

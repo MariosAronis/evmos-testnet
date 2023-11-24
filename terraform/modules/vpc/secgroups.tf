@@ -103,3 +103,49 @@ resource "aws_security_group" "evmos-testnet-sg-priv" {
   }
 }
 
+
+###############################
+# Security Group for vpn seever
+###############################
+
+resource "aws_security_group" "evmos-vpn-sg" {
+  name        = "evmos-vpn-sg"
+  description = "Security Group for vpn subnet"
+  vpc_id      = aws_vpc.evmos-testnet-vpn.id 
+
+  # Allow UDP tunelling on all IFs
+  ingress {
+    from_port = 943
+    to_port = 943
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  } 
+
+  # Allow UDP tunelling on all IFs
+  ingress {
+    from_port = 1194
+    to_port = 1194
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  } 
+
+  # Allow HTTPS access on all IFs
+  ingress {
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  } 
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "evmos-vpn"
+  }
+  
+}
