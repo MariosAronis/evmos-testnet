@@ -1,7 +1,7 @@
 region              = "us-west-2"
 private_key         = "mariosee"
 cidr_prefix_testnet = "10.30"
-cidr_prefix_vpn     = "10.10"
+cidr_prefix_vpn     = "10.50"
 instance_type       = "t3.xlarge"
 environment_name    = "evmos-testnet"
 instances_prefix    = "evmos-validator"
