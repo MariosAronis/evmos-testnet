@@ -205,23 +205,23 @@ resource "aws_route_table_association" "evmos-testnet-vpn-associate-r-s-public" 
   route_table_id = aws_default_route_table.evmos-testnet-rtb-public.id
 }
 
-# Create route table for private subnet
-resource "aws_route_table" "evmos-testnet-vpn-rtb-private" {
-  vpc_id = aws_vpc.evmos-testnet.id
+# # Create route table for private subnet
+# resource "aws_route_table" "evmos-testnet-vpn-rtb-private" {
+#   vpc_id = aws_vpc.evmos-testnet.id
 
-  route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.evmos-testnet-vpn-nat.id
-  }
+#   route {
+#     cidr_block     = "0.0.0.0/0"
+#     nat_gateway_id = aws_nat_gateway.evmos-testnet-vpn-nat.id
+#   }
 
-  route {
-    cidr_block                = "${var.cidr_prefix_vpn}.0.0/16"
-    vpc_peering_connection_id = aws_vpc_peering_connection.evmos-testnet-vpn.id
-  }
-}
+#   route {
+#     cidr_block                = "${var.cidr_prefix_vpn}.0.0/16"
+#     vpc_peering_connection_id = aws_vpc_peering_connection.evmos-testnet-vpn.id
+#   }
+# }
 
-# Associate route table to private subnet
-resource "aws_route_table_association" "evmos-testnet-vpn-associate-r-s-private" {
-  subnet_id      = aws_subnet.evmos-testnet-vpn-sn-priv.id
-  route_table_id = aws_route_table.evmos-testnet-vpn-rtb-private.id
-}
+# # Associate route table to private subnet
+# resource "aws_route_table_association" "evmos-testnet-vpn-associate-r-s-private" {
+#   subnet_id      = aws_subnet.evmos-testnet-vpn-sn-priv.id
+#   route_table_id = aws_route_table.evmos-testnet-vpn-rtb-private.id
+# }
