@@ -6,8 +6,8 @@ resource "aws_instance" "evmos_testnet_vpn" {
   vpc_security_group_ids = [var.secgroup-vpn]
   key_name = var.private_key
   user_data = <<EOF
-set -ex
 apt update && apt -y install ca-certificates wget net-tools gnupg
+apt-get install ec2-instance-connect
 wget https://as-repository.openvpn.net/as-repo-public.asc -qO /etc/apt/trusted.gpg.d/as-repository.asc
 echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/as-repository.asc] http://as-repository.openvpn.net/as/debian jammy main">/etc/apt/sources.list.d/openvpn-as-repo.list
 apt update && apt -y install openvpn-as
@@ -44,7 +44,6 @@ resource "aws_instance" "evmos-validator" {
   key_name                = var.private_key
 #   iam_instance_profile    = var.evmos-validator-profile.name
   user_data = <<EOF
-set -ex
 apt-get update
 apt-get install -y net-tools
 hostnamectl set-hostname "evmos-validator-${count.index}"
