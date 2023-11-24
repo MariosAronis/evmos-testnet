@@ -7,10 +7,25 @@ resource "aws_instance" "evmos_testnet_vpn" {
   key_name = var.private_key
   user_data = <<EOF
 set -ex
-apt-get update
-apt-get install -y net-tools
+apt update && apt -y install ca-certificates wget net-tools gnupg
+wget https://as-repository.openvpn.net/as-repo-public.asc -qO /etc/apt/trusted.gpg.d/as-repository.asc
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/as-repository.asc] http://as-repository.openvpn.net/as/debian jammy main">/etc/apt/sources.list.d/openvpn-as-repo.list
+apt update && apt -y install openvpn-as
 hostnamectl set-hostname evmos-testnet-vpn
 EOF
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = "100"
+  }
+
+  tags = {
+    Name = evmos-testnet-vpn
+  }
+
+  volume_tags = {
+    "Name" = evmos-testnet-vpn-root-ebs-
+  }
 }
 
 

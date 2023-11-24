@@ -105,7 +105,7 @@ resource "aws_security_group" "evmos-testnet-sg-priv" {
 
 
 ###############################
-# Security Group for vpn seever
+# Security Group for vpn server
 ###############################
 
 resource "aws_security_group" "evmos-vpn-sg" {
@@ -145,7 +145,7 @@ resource "aws_security_group" "evmos-vpn-sg" {
   }
 
   tags = {
-    Name = "evmos-vpn"
+    Name = "evmos-vpn-sg"
   }
   
 }
