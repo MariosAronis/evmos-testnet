@@ -202,7 +202,7 @@ resource "aws_default_route_table" "evmos-testnet-vpn-rtb-public" {
 # Associate route table to public subnet
 resource "aws_route_table_association" "evmos-testnet-vpn-associate-r-s-public" {
   subnet_id      = aws_subnet.evmos-testnet-vpn-sn-public.id
-  route_table_id = aws_default_route_table.evmos-testnet-rtb-public.id
+  route_table_id = aws_default_route_table.evmos-testnet-vpn-rtb-public.id
 }
 
 # # Create route table for private subnet
