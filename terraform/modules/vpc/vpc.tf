@@ -182,13 +182,13 @@ resource "aws_default_route_table" "evmos-testnet-vpn-rtb-public" {
   
   # Peering Route to testnet public network 
   route {
-    cidr_block                = "${var.cidr_prefix_testnet}.0.0/16"
+    cidr_block                = "${var.cidr_prefix_testnet}.0.0/24"
     vpc_peering_connection_id = aws_vpc_peering_connection.evmos-testnet-vpn.id
   }
 
   # Peering Route to testnet private network 
   route {
-    cidr_block                = "${var.cidr_prefix_testnet}.1.0/16"
+    cidr_block                = "${var.cidr_prefix_testnet}.1.0/24"
     vpc_peering_connection_id = aws_vpc_peering_connection.evmos-testnet-vpn.id
   }
 
