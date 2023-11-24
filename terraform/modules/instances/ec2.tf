@@ -3,7 +3,7 @@ resource "aws_instance" "evmos-validator" {
   count = var.ec2-count
   ami                     = var.ami
   instance_type           = var.instance_type
-  disable_api_termination = false
+#   disable_api_termination = false
   subnet_id               = var.subnet-priv
   vpc_security_group_ids  = [var.secgroup-priv]
   ebs_optimized           = "true"
