@@ -20,11 +20,11 @@ EOF
   }
 
   tags = {
-    Name = evmos-testnet-vpn
+    Name = "evmos-testnet-vpn"
   }
 
   volume_tags = {
-    "Name" = evmos-testnet-vpn-root-ebs-
+    "Name" = "evmos-testnet-vpn-root-ebs"
   }
 }
 
