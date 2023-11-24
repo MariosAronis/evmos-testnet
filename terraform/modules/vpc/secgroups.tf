@@ -121,6 +121,14 @@ resource "aws_security_group" "evmos-vpn-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   } 
 
+  # WARNING: THIS IS ONLY TEMNPORARY: Allow SSH on all IFs
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  } 
+
   # Allow UDP tunelling on all IFs
   ingress {
     from_port = 1194
