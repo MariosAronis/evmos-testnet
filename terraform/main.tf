@@ -25,6 +25,7 @@ module "vpc-main" {
   az-2                = var.az-2
   cidr_prefix_testnet = var.cidr_prefix_testnet
   cidr_prefix_vpn     = var.cidr_prefix_vpn
+  admin-public-ip     = var.admin-public-ip
 }
 
 module "ec2s-main" {

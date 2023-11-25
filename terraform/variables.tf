@@ -56,3 +56,7 @@ variable "storage" {
   description = "SSD size in GB"
   type        = number
 }
+
+variable "admin-public-ip" {
+  type = string
+}
