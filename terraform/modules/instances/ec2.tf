@@ -2,25 +2,25 @@
 # Deploy OpenVPNAS from AWS MarketPlace
 #######################################
 
-resource "aws_instance" "evmos_testnet_vpn" {
-  ami = "ami-0be082f179862d3f7"
-  instance_type = var.vpn_instance_type
-  subnet_id = var.subnet-vpn.id
-  vpc_security_group_ids = [var.secgroup-vpn]
-  key_name = var.private_key
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = "100"
-  }
+# resource "aws_instance" "evmos_testnet_vpn" {
+#   ami = "ami-0be082f179862d3f7"
+#   instance_type = var.vpn_instance_type
+#   subnet_id = var.subnet-vpn.id
+#   vpc_security_group_ids = [var.secgroup-vpn]
+#   key_name = var.private_key
+#   root_block_device {
+#     volume_type = "gp2"
+#     volume_size = "100"
+#   }
 
-  tags = {
-    Name = "evmos-testnet-vpn"
-  }
+#   tags = {
+#     Name = "evmos-testnet-vpn"
+#   }
 
-  volume_tags = {
-    "Name" = "evmos-testnet-vpn-root-ebs"
-  }
-}
+#   volume_tags = {
+#     "Name" = "evmos-testnet-vpn-root-ebs"
+#   }
+# }
 
 
 #################################################
