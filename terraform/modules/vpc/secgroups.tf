@@ -128,7 +128,7 @@ resource "aws_security_group" "evmos-vpn-sg" {
     from_port = 22
     to_port = 22
     protocol = "tcp"
-    cidr_blocks = ["91.140.29.158/32"]
+    cidr_blocks = ["${var.admin-public-ip}/32"]
   } 
 
   # Allow UDP tunelling on all IFs
