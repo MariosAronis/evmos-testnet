@@ -5,3 +5,7 @@ output "Validators-private-ips" {
 output "VPN-Server-IP" {
   value = module.ec2s-main.VPN-Server-IP
 }
+
+output "VPN-Server-Private-IP" {
+  value = module.ec2s-main.VPN-Server-Private-IP
+}
