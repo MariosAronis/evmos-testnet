@@ -44,3 +44,7 @@ module "ec2s-main" {
   secgroup-vpn      = module.vpc-main.secgroup-vpn.id
   private_key       = var.private_key
 }
+
+module "ecr-main" {
+  source              = "./modules/ecr"
+}
