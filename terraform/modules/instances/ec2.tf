@@ -1,32 +1,20 @@
-resource "aws_instance" "evmos_testnet_openvpn" {
+resource "aws_instance" "evmos_testnet_openvpn-mp" {
   ami = "ami-0be082f179862d3f7"
   instance_type = var.vpn_instance_type
   subnet_id = var.subnet-vpn.id
   vpc_security_group_ids = [var.secgroup-vpn]
   key_name = var.private_key
-  user_data = <<EOF
-#!/bin/bash
-# ufw allow OpenSSH
-# ufw enable
-# apt update && apt -y install ca-certificates wget net-tools gnupg
-# apt-get install ec2-instance-connect
-# wget https://as-repository.openvpn.net/as-repo-public.asc -qO /etc/apt/trusted.gpg.d/as-repository.asc
-# echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/as-repository.asc] http://as-repository.openvpn.net/as/debian jammy main">/etc/apt/sources.list.d/openvpn-as-repo.list
-# apt update && apt -y install openvpn-as
-hostnamectl set-hostname evmos-testnet-vpn
-EOF
-
   root_block_device {
     volume_type = "gp2"
     volume_size = "100"
   }
 
   tags = {
-    Name = "evmos-testnet-vpn-xenial"
+    Name = "evmos-testnet-vpn--mp"
   }
 
   volume_tags = {
-    "Name" = "evmos-testnet-vpn-root-ebs-xenial"
+    "Name" = "evmos-testnet-vpn-root-ebs--mp"
   }
 }
 
