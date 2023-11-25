@@ -124,12 +124,12 @@ resource "aws_security_group" "evmos-vpn-sg" {
   # WARNING: THIS IS ONLY TEMNPORARY: Allow SSH on all IFs from admin publicIP
   # Make sure to remove this rule when tunneling is enabled/configured
 
-  # ingress {
-  #   from_port = 22
-  #   to_port = 22
-  #   protocol = "tcp"
-  #   cidr_blocks = ["${var.admin-public-ip}/32"]
-  # } 
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["91.140.29.158/32"]
+  } 
 
   # Allow UDP tunelling on all IFs
   ingress {
