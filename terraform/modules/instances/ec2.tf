@@ -49,7 +49,7 @@ echo   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/doc
 "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin gcc make jq -y
-groupadd docker
+usermod -aG docker $USER
 hostnamectl set-hostname "evmos-validator-${count.index}"
 EOF
 
