@@ -50,6 +50,9 @@ echo   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/doc
 apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin gcc make jq -y
 usermod -aG docker $USER
+wget https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
+echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
 hostnamectl set-hostname "evmos-validator-${count.index}"
 EOF
 
