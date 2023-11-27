@@ -55,6 +55,10 @@ hostnamectl set-hostname "evmos-validator-${count.index}"
 USER=`getent passwd 1000 | cut -d: -f1`
 usermod -aG docker $USER
 echo "export PATH=$PATH:/usr/local/go/bin" >> /home/$USER/.bashrc
+mkfs -t xfs /dev/nvme1n1 
+mkdir /data
+sudo mount /dev/nvme1n1 /data
+chown -R 1000:1000 /data
 EOF
 
   root_block_device {
