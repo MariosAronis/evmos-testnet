@@ -60,8 +60,6 @@ mkdir /data
 sudo mount /dev/nvme1n1 /data
 chown -R 1000:1000 /data
 chown -R 1000:1000 /home/$USER/go
-ufw allow 26658
-ufw enable
 EOF
 
   root_block_device {
