@@ -49,10 +49,8 @@ echo   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/doc
 "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin gcc make jq -y
-usermod -aG docker $USER
 wget https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
-echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
 hostnamectl set-hostname "evmos-validator-${count.index}"
 EOF
 
@@ -73,9 +71,14 @@ EOF
     ignore_changes = [ami, root_block_device]
   }
 
-#   provisioner "remote-exec" {
-#   inline = ["sudo hostnamectl set-hostname evmos-validator-${count.index}"]
-# }
+  provisioner "remote-exec" {
+  inline = ["sudo usermod -aG docker $USER"]
+}
+
+  provisioner "remote-exec" {
+  inline = ["echo \"export PATH=$PATH:/usr/local/go/bin\" >> ~/.bashrc"]
+}
+
 }
 
 # Create SSD volume for evmos-validator
