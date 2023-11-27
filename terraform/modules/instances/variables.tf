@@ -4,11 +4,11 @@ variable "ec2-count" {
 }
 
 variable "ami" {
-    type = string
+  type = string
 }
 
 variable "instance_type" {
-    type = string
+  type = string
 }
 
 variable "vpn_instance_type" {
@@ -16,23 +16,23 @@ variable "vpn_instance_type" {
 }
 
 variable "subnet-pub" {
-     type = string
+  type = string
 }
 
 variable "subnet-priv" {
-     type = string
+  type = string
 }
 
 variable "secgroup-pub" {
-     type = string
+  type = string
 }
 
 variable "secgroup-priv" {
-     type = string
+  type = string
 }
 
 variable "storage" {
-     type = number
+  type = number
 }
 
 variable "subnet-vpn" {

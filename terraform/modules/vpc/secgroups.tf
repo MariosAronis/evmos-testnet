@@ -75,21 +75,12 @@ resource "aws_security_group" "evmos-testnet-sg-priv" {
   }
 
   ingress {
-    description = "Allow geth discovery port"
-    from_port   = 30303
-    to_port     = 30303
-    protocol    = "tcp"
+    description = "Allow all intra VPC communications"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["${var.cidr_prefix_testnet}.0.0/16"]
   }
-
-   ingress {
-    description = "Allow geth discovery port"
-    from_port   = 30303
-    to_port     = 30303
-    protocol    = "udp"
-    cidr_blocks = ["${var.cidr_prefix_testnet}.0.0/16"]
-  }
-
 
   egress {
     from_port   = 0
