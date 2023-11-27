@@ -54,7 +54,7 @@ tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
 hostnamectl set-hostname "evmos-validator-${count.index}"
 USER=`echo $USER`
 PATH=`echo $PATH`
-usermod -aG docker $USER
+usermod -aG docker ubuntu
 echo $USER
 echo $PATH
 echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
