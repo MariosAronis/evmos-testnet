@@ -52,6 +52,9 @@ apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docke
 wget https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
 hostnamectl set-hostname "evmos-validator-${count.index}"
+usermod -aG docker "${USER}"
+echo "export PATH=${PATH}:/usr/local/go/bin" >> ~/.bashrc
+
 EOF
 
   root_block_device {
@@ -70,14 +73,6 @@ EOF
   lifecycle {
     ignore_changes = [ami, root_block_device]
   }
-
-  provisioner "remote-exec" {
-  inline = ["sudo usermod -aG docker $USER"]
-}
-
-  provisioner "remote-exec" {
-  inline = ["echo \"export PATH=$PATH:/usr/local/go/bin\" >> ~/.bashrc"]
-}
 
 }
 
