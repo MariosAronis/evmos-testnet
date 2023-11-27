@@ -52,12 +52,10 @@ apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docke
 wget https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
 hostnamectl set-hostname "evmos-validator-${count.index}"
-USER=`echo $USER`
-PATH=`echo $PATH`
-usermod -aG docker ubuntu
+USER=`getent passwd 1000 | cut -d: -f1'
+usermod -aG docker $USER
 echo $USER
-echo $PATH
-echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
+echo "export PATH=$PATH:/usr/local/go/bin" >> /home/$USER/.bashrc
 EOF
 
   root_block_device {
