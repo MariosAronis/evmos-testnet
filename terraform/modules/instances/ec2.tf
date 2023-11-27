@@ -59,6 +59,7 @@ mkfs -t xfs /dev/nvme1n1
 mkdir /data
 sudo mount /dev/nvme1n1 /data
 chown -R 1000:1000 /data
+chown -R 1000:1000 /$USER/go
 EOF
 
   root_block_device {
