@@ -63,7 +63,7 @@ resource "aws_security_group" "evmos-testnet-sg-priv" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["${var.cidr_prefix_testnet}.1.0/24", "${var.cidr_prefix_testnet}.2.0/24", "${var.cidr_prefix_testnet}.3.0/24"]
+    cidr_blocks = ["${var.cidr_prefix_testnet}.1.0/24", "${var.cidr_prefix_testnet}.2.0/24"]
   }
 
   ingress {
@@ -74,15 +74,7 @@ resource "aws_security_group" "evmos-testnet-sg-priv" {
     cidr_blocks = ["${var.cidr_prefix_vpn}.0.0/16"]
   }
 
-  ingress {
-    description = "Allow all intra VPC communications"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["${var.cidr_prefix_testnet}.0.0/16"]
-  }
-
-  egress {
+    egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
