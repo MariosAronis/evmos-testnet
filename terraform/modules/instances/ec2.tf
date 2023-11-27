@@ -50,11 +50,11 @@ echo   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/doc
 apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin gcc make jq -y
 wget https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
-hostnamectl set-hostname "evmos-validator-${count.index}"
 USER=`getent passwd 1000 | cut -d: -f1`
+tar -C /home/$USER -xzf go1.21.4.linux-amd64.tar.gz
+hostnamectl set-hostname "evmos-validator-${count.index}"
 usermod -aG docker $USER
-echo "export PATH=$PATH:/usr/local/go/bin" >> /home/$USER/.bashrc
+echo "export PATH=$PATH:/home/$USER/go/bin" >> /home/$USER/.bashrc
 mkfs -t xfs /dev/nvme1n1 
 mkdir /data
 sudo mount /dev/nvme1n1 /data
