@@ -10,6 +10,6 @@ output "VPN-Server-Private-IP" {
   value = module.ec2s-main.VPN-Server-Private-IP
 }
 
-output "evmos deploy IAM Role" {
+output "evmos-deploy-IAM-Role" {
   value = module.iam-main.evmosnode-deploy-iam-role.arn
 }
