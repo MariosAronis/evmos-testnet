@@ -48,3 +48,7 @@ module "ec2s-main" {
 module "ecr-main" {
   source              = "./modules/ecr"
 }
+
+module "iam-main" {
+  source              = "./modules/iam"
+}
