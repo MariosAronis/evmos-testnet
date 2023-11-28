@@ -65,3 +65,7 @@ Variable **admin-public-ip** is used to configure the vpc security groups to all
 Save and reload the service.
 Now visit https://publicip/ and follow the instructions to configure your local openvpn client and download the client configuration file. Login instructions are also provided. 
 
+### Validator Nodes
+
+SSH Access to the validator hosts is possible via openvpn on the private IPs displayed in terafform cloud run. 
+The cluster can be scaled up/down by controlling the variable ec2-count and manually triggering a new workspace run. 
