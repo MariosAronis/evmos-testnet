@@ -44,7 +44,7 @@ resource "aws_iam_policy_attachment" "EvmosNodeSSMManagedInstance" {
 }
 
 # Create the OIDC provider [REFERENCE: https://github.com/philips-labs/terraform-aws-github-oidc/tree/main/modules/provider]
-resource "aws_iam_openid_connect_provider" "github_actions" {
+resource "aws_iam_openid_connect_provider" "github_actions_evmos" {
   url             = "https://token.actions.githubusercontent.com"
   client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = var.thumbprint_list
@@ -54,26 +54,26 @@ resource "aws_iam_openid_connect_provider" "github_actions" {
 }
 
 output "openid_connect_provider" {
-  depends_on  = [aws_iam_openid_connect_provider.github_actions]
+  depends_on  = [aws_iam_openid_connect_provider.github_actions_evmos]
   description = "AWS OpenID Connected identity provider."
-  value       = aws_iam_openid_connect_provider.github_actions
+  value       = aws_iam_openid_connect_provider.github_actions_evmos
 }
 
-# data "aws_iam_openid_connect_provider" "github_actions" {
-#   depends_on = [aws_iam_openid_connect_provider.github_actions]
-#   arn        = aws_iam_openid_connect_provider.github_actions.arn
+# data "aws_iam_openid_connect_provider" "github_actions_evmos" {
+#   depends_on = [aws_iam_openid_connect_provider.github_actions_evmos]
+#   arn        = aws_iam_openid_connect_provider.github_actions_evmos.arn
 # }
 
 #Create Assume Role policy Document for GH workflows/runners
 data "aws_iam_policy_document" "evmos-testnet-deployments-assume_role-slc" {
-  depends_on = [aws_iam_openid_connect_provider.github_actions]
+  depends_on = [aws_iam_openid_connect_provider.github_actions_evmos]
   statement {
     effect = "Allow"
 
     principals {
       type = "Federated"
-      # identifiers = [data.aws_iam_openid_connect_provider.github_actions.arn]
-      identifiers = [aws_iam_openid_connect_provider.github_actions.arn]
+      # identifiers = [data.aws_iam_openid_connect_provider.github_actions_evmos.arn]
+      identifiers = [aws_iam_openid_connect_provider.github_actions_evmos.arn]
     }
 
     actions = ["sts:AssumeRoleWithWebIdentity"]
