@@ -59,10 +59,10 @@ output "openid_connect_provider" {
   value       = aws_iam_openid_connect_provider.github_actions
 }
 
-data "aws_iam_openid_connect_provider" "github_actions" {
-  depends_on = [aws_iam_openid_connect_provider.github_actions]
-  arn        = aws_iam_openid_connect_provider.github_actions.arn
-}
+# data "aws_iam_openid_connect_provider" "github_actions" {
+#   depends_on = [aws_iam_openid_connect_provider.github_actions]
+#   arn        = aws_iam_openid_connect_provider.github_actions.arn
+# }
 
 #Create Assume Role policy Document for GH workflows/runners
 data "aws_iam_policy_document" "evmos-testnet-deployments-assume_role-slc" {
