@@ -73,7 +73,7 @@ data "aws_iam_policy_document" "evmos-testnet-deployments-assume_role-slc" {
     principals {
       type = "Federated"
       # identifiers = [data.aws_iam_openid_connect_provider.github_actions.arn]
-      identifiers = [data.aws_iam_openid_connect_provider.github_actions.arn]
+      identifiers = [aws_iam_openid_connect_provider.github_actions.arn]
     }
 
     actions = ["sts:AssumeRoleWithWebIdentity"]
