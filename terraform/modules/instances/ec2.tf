@@ -36,7 +36,7 @@ resource "aws_instance" "evmos-validator" {
   vpc_security_group_ids = [var.secgroup-priv]
   ebs_optimized          = "true"
   key_name               = var.private_key
-  #   iam_instance_profile    = var.evmos-validator-profile.name
+  iam_instance_profile    = var.evmosnode-profile.name
   user_data = <<EOF
 #!/bin/bash
 apt-get update

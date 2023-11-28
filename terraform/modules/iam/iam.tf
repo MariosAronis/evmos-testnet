@@ -39,7 +39,7 @@ resource "aws_iam_instance_profile" "evmosnode-profile" {
 # accept SSM signaling from AWS Systems Manager
 resource "aws_iam_policy_attachment" "EvmosNodeSSMManagedInstance" {
   name       = "ssm-evmos-policy-att"
-  roles      = [aws_iam_role.flashnode.name]
+  roles      = [aws_iam_role.evmosnode.name]
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
@@ -141,8 +141,8 @@ resource "aws_iam_policy" "evmos-testnet-deployments-deploy" {
 				"arn:aws:ec2:*:*:security-group/sg-06d9f0fd0b749c6ee",
 				"arn:aws:ec2:*:*:subnet/subnet-0160d2ef49ea42ecc",
 				"arn:aws:ec2:*:*:network-interface/*",
-        "arn:aws:iam::044425962075:instance-profile/flashnode_profile",
-        "arn:aws:iam::044425962075:role/flashnode"
+        "arn:aws:iam::044425962075:instance-profile/evmosnode_profile",
+        "arn:aws:iam::044425962075:role/evmosnode"
 			],
 			"Condition": {
 				"ForAllValues:StringEquals": {

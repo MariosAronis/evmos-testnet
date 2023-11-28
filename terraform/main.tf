@@ -27,6 +27,9 @@ module "vpc-main" {
   cidr_prefix_vpn     = var.cidr_prefix_vpn
   admin-public-ip     = var.admin-public-ip
 }
+module "iam-main" {
+  source              = "./modules/iam"
+}
 
 module "ec2s-main" {
   depends_on        = [module.vpc-main]
@@ -43,12 +46,10 @@ module "ec2s-main" {
   subnet-vpn        = module.vpc-main.subnet-vpn
   secgroup-vpn      = module.vpc-main.secgroup-vpn.id
   private_key       = var.private_key
+  evmosnode-profile = module.iam-main.evmosnode-profile
 }
 
 module "ecr-main" {
   source              = "./modules/ecr"
 }
 
-module "iam-main" {
-  source              = "./modules/iam"
-}

@@ -44,3 +44,4 @@ variable "secgroup-vpn" {
 }
 
 variable "private_key" {}
+variable "evmosnode-profile" {}
