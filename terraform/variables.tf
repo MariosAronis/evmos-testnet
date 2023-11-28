@@ -61,4 +61,5 @@ variable "admin-public-ip" {
   type = string
 }
 
-variable "evmosnode-profile" {}
+variable "evmosnode-profile" {
+}
