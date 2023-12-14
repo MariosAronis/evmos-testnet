@@ -1,3 +1,38 @@
+# IAM Policy to allow read/write against S3 Bucket for evmos node
+
+resource "aws_iam_policy" "s3-policy" {
+  name        = "s3-policy"
+  description = "Allow evmosnode access to evmosd binaries' S3 bucket"
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:GetObjectVersion",
+                "s3:DeleteObject",
+                "s3:DeleteObjectVersion",
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::evmosd_binaries/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::ethereum-keystore"
+        }
+    ]
+}
+EOF
+}
+
+
 # Following section creates the policies and roles needed for github runners
 # to assume temporary permissions (with short-lived-credentials) against aws cloud
 # resources:
@@ -28,6 +63,12 @@ EOF
   tags = {
     Name = "evmosnode_role"
   }
+}
+
+resource "aws_iam_policy_attachment" "s3-evmosnode-policy-att" {
+  name       = "s3-evmosnode-policy-att"
+  roles      = [aws_iam_role.evmosnode.name]
+  policy_arn = aws_iam_policy.s3-policy.arn
 }
 
 resource "aws_iam_instance_profile" "evmosnode-profile" {

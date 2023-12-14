@@ -60,6 +60,9 @@ mkdir /data
 sudo mount /dev/nvme1n1 /data
 chown -R 1000:1000 /data
 chown -R 1000:1000 /home/$USER/go
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
 EOF
 
   root_block_device {
