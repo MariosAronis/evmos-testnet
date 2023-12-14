@@ -1,0 +1,24 @@
+# This file is maintained automatically by "terraform init".
+# Manual edits may be lost in future updates.
+
+provider "registry.terraform.io/hashicorp/awscc" {
+  version = "0.66.0"
+  hashes = [
+    "h1:If05UZ9G/hNMsdjxE3/+dVliI64JXpIumAMNLhhkAzc=",
+    "zh:0e1a94d823ec33d37434b099b215e519372029044dc52d39228d082d6833e878",
+    "zh:0eedc1c215d0ecda1a59f1867503a4d07e5437e660590de2e7cc615f62a3b837",
+    "zh:18051e92c7daed2e7ac4ddd2af4d9da8429b591fba6adf2ee98e2ace8544068d",
+    "zh:1e12188fc22f3e58564cf83d41da02692196f0b640535b0724dacc645ae686de",
+    "zh:33b0ba90d6b3361eeab19daa958ed756743300bff7006e34f06c7f5d9b0e1504",
+    "zh:55098c03e4709e529f6762ef245adfd5270057ca68df58354ec20f8c61781f4b",
+    "zh:63981505b088fdeb104c486f4f0cd5d4d29edc9e7a716f0192372f530ba186c5",
+    "zh:688a946ae20dcd258263e43163373a17710b084d52e60e7ca4717ef123ed2d46",
+    "zh:6f00e646e9d0b7ec98d7d33ea5118dfc9b8b075024ac453ecbccf95266f5f8ad",
+    "zh:764ac2f7c8b683536a184bb3f2478de0c5df55dbd64d0a62bb47b01bf24dfc0d",
+    "zh:c53d674bf4f9fb6a7c97a7233665e7bdc362b45ddbe9d1008029a6b2f3168e42",
+    "zh:e5cf562e546124bd3e302af383039c2a8dd1568583400c66568bcee5a854ea2b",
+    "zh:e8eb0c57e58529b1d03d525a9d57eaa0d504c2a174786c02144757352f397157",
+    "zh:ea9dc4e2812857bc04b7ffe7983c9f28ea5831812aed14b322e14696ec605ca6",
+    "zh:f809ab383cca0a5f83072981c64208cbd7fa67e986a86ee02dd2c82333221e32",
+  ]
+}
