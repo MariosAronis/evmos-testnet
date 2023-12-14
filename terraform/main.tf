@@ -53,7 +53,3 @@ module "ecr-main" {
   source              = "./modules/ecr"
 }
 
-module "awscc-main" {
-  source = "./modules/artifactsrepo"
-}
-
