@@ -68,11 +68,11 @@ EOF
   }
 
   tags = {
-    Name = "evmos-validator-${count.index}"
+    Name = "evmos-validator"
   }
 
   volume_tags = {
-    "Name" = "evmos-validator-root-ebs-${count.index}"
+    "Name" = "evmos-validator-root-ebs"
   }
 
   lifecycle {
