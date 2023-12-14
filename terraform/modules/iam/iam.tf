@@ -1,7 +1,7 @@
 # IAM Policy to allow read/write against S3 Bucket for evmos node
 
-resource "aws_iam_policy" "s3-policy" {
-  name        = "s3-policy"
+resource "aws_iam_policy" "s3-evmos-policy" {
+  name        = "s3-evmos-policy"
   description = "Allow evmosnode access to evmosd binaries' S3 bucket"
 
   policy = <<EOF
@@ -68,7 +68,7 @@ EOF
 resource "aws_iam_policy_attachment" "s3-evmosnode-policy-att" {
   name       = "s3-evmosnode-policy-att"
   roles      = [aws_iam_role.evmosnode.name]
-  policy_arn = aws_iam_policy.s3-policy.arn
+  policy_arn = aws_iam_policy.s3-evmos-policy.arn
 }
 
 resource "aws_iam_instance_profile" "evmosnode-profile" {
