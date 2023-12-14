@@ -53,4 +53,6 @@ module "ecr-main" {
   source              = "./modules/ecr"
 }
 
-
+module "s3-main" {
+  source = "./modules/s3"
+}
