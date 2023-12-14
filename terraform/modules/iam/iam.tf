@@ -18,14 +18,14 @@ resource "aws_iam_policy" "s3-evmos-policy" {
                 "s3:DeleteObjectVersion",
                 "s3:ListBucket"
             ],
-            "Resource": "arn:aws:s3:::evmosd_binaries/*"
+            "Resource": "arn:aws:s3:::evmosd-binaries/*"
         },
         {
             "Effect": "Allow",
             "Action": [
                 "s3:ListBucket"
             ],
-            "Resource": "arn:aws:s3:::ethereum-keystore"
+            "Resource": "arn:aws:s3:::evmosd-binaries"
         }
     ]
 }
